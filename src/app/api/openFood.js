@@ -9,7 +9,7 @@ export const fetchBatchAllergens = async (ingredients) => {
         const response = await fetch(
           `https://world.openfoodfacts.org/api/v2/search?search_terms=${ingredient}&fields=product_name,ingredients_text,allergens`
         );
-
+  // console.log("see response",response)
         if (!response.ok) {
           throw new Error(`Failed to fetch data for-- ${ingredient}`);
         }

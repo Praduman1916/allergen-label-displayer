@@ -31,11 +31,12 @@ export default function Home() {
 
   const handleRecipeChange = (direction) => {
     setSelectedRecipeIndex((prevIndex) => {
-      if (direction === "next") {
-        return (prevIndex + 1) % recipes.length;
-      } else {
-        return (prevIndex - 1 + recipes.length) % recipes.length;
+      if (direction === "next" && prevIndex < recipes.length - 1) {
+        return prevIndex + 1;
+      } else if (direction === "prev" && prevIndex > 0) {
+        return prevIndex - 1;
       }
+      return prevIndex; 
     });
   };
 
@@ -57,9 +58,9 @@ export default function Home() {
       {recipes.length > 0 && !loading && (
         <div className="recipe-section">
           <div className="navigation">
-            <button onClick={() => handleRecipeChange("prev")}>&larr; Previous</button>
-            <h2>{recipes[selectedRecipeIndex].recipeName}</h2>
-            <button onClick={() => handleRecipeChange("next")}>Next &rarr;</button>
+          { selectedRecipeIndex>0&& <button onClick={() => handleRecipeChange("prev")}>&larr;&nbsp;Previous</button>}
+            <h2 className="flex w-full text-center justify-center">{recipes[selectedRecipeIndex].recipeName}</h2>
+           {selectedRecipeIndex < recipes.length - 1 && <button onClick={() => handleRecipeChange("next")}>Next&nbsp;&rarr;</button>}
           </div>
 
           <h3>Ingredients:</h3>

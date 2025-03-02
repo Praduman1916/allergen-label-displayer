@@ -7,14 +7,20 @@ const FileUpload = ({ onFileUpload }) => {
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
 
-
-
   const extractRecipes = (data) => {
+    const headers = data[0].map((header) => header?.trim().toLowerCase());
+    const expectedHeaders = ["product", "ingredients"];
+    if (headers.length < 2 || !expectedHeaders.every((h) => headers.includes(h))) {
+      setError("Invalid file format, first row contains 'Product' and 'Ingredients' as headers.");
+      return [];
+    }
+    const productIndex = headers.indexOf("product");
+    const ingredientIndex = headers.indexOf("ingredients");
+
     const recipes = {};
     for (let i = 1; i < data.length; i++) {
-      const recipeName = data[i][0];
-      const ingredient = data[i][1];
-
+      const recipeName = data[i][productIndex]?.trim();
+      const ingredient = data[i][ingredientIndex]?.trim();
       if (recipeName && ingredient) {
         if (!recipes[recipeName]) {
           recipes[recipeName] = { recipeName, ingredients: [] };
@@ -22,12 +28,15 @@ const FileUpload = ({ onFileUpload }) => {
         recipes[recipeName].ingredients.push(ingredient);
       }
     }
-    console.log("/.... recipes", recipes)
+    if (Object.keys(recipes).length === 0) {
+      setError("No valid recipes found in the uploaded file.");
+      return [];
+    }
     return Object.values(recipes);
   };
 
   const onDrop = (acceptedFile) => {
-    console.log("acceptedFile", acceptedFile)
+    // console.log("Accepted File:", acceptedFile);
     setError("");
     const file = acceptedFile[0];
     if (!file.name.endsWith(".xlsx")) {
@@ -43,9 +52,19 @@ const FileUpload = ({ onFileUpload }) => {
       const workbook = XLSX.read(data, { type: "array" });
 
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      if (!sheet) {
+        setError("Excel file does not contain any sheet.");
+        return;
+      }
       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+      if (!jsonData || jsonData.length === 0) {
+        setError("uploaded file is empty.");
+        return;
+      }
       const extractedRecipes = extractRecipes(jsonData);
-      onFileUpload(extractedRecipes);
+      if (extractedRecipes.length > 0) {
+        onFileUpload(extractedRecipes);
+      }
     };
     reader.readAsArrayBuffer(file);
   };
