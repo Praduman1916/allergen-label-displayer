@@ -22,3 +22,91 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.upload-container {
+  margin-top: 20px;
+}
+
+.dropzone {
+  border: 2px dashed #0070f3;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.recipe-section {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navigation button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigation button:hover {
+  background-color: #005bb5;
+}
+
+.ingredients-list {
+  text-align: left;
+  list-style-type: square;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.ingredients-list li {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #0070f3;
+  color: white;
+}
+
+.loading {
+  color: #0070f3;
+  font-weight: bold;
+}
+
+
+
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
