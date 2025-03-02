@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ** README Requirements**  
 
-## Getting Started
+## **1 Setup Instructions**  
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### ** Step 1: Clone the Repository**  
+Open your terminal and run:  
+```sh
+git clone https://github.com/Praduman1916/allergen-label-displayer
+cd allergen-label-displayer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ** Step 2: Install Dependencies**  
+Install the required dependencies:  
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### ** Step 3: Start the Application**  
+Run the development server with:  
+```sh
+npm run dev
+```
+Once started, open your browser and visit-  
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ** 2 How to Use**  
 
-To learn more about Next.js, take a look at the following resources:
+1. **Upload an Excel file (`.xlsx`)** containing recipes using the **drag-and-drop** or **manual upload** option.  
+2. **The system will extract the ingredients** and automatically **fetch allergen details**.  
+3. **A loading message and spinner** will appear while allergen data is being retrieved.  
+4. **If an invalid file** is uploaded, an **error message will dispaly the user**.  
+5. **Once the allergen data is loaded,** it will be displayed in a **structured table**.  
+6. **Users can navigate between recipes** using the **Next and Previous** buttons.  
+7. **View allergen warnings** displayed in a **clear and organized table**.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## **3 Solution Explanation**  
 
-## Deploy on Vercel
+### ** Approach**  
+- **The application allows users to upload an Excel file** that contains a list of **recipes and ingredients**.  
+- **It processes the file** to extract ingredient information and ensures that only **supported file formats** are accepted.  
+- **The system then fetches allergen details** from an external API **Open Food Facts API** , displaying any **potential allergens** linked to each ingredient.  
+- **A smooth user interface** ensures that users can **easily navigate between recipes without delays**.  
+- **The entire process is optimized** to handle multiple recipes **efficiently** and display results **instantly**.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ** Potential Improvements**  
+- **Improve the efficiency of API calls** to minimize repeated requests for the same ingredients.  
+- **Enhance the user interface** with better **design elements** for loading states, error messages, and warnings.  
+- **Expand file support** to include additional formats such as **CSV** for better flexibility.  
+- **Optimize the system** to handle **larger datasets** and improve **performance** for bulk processing.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---

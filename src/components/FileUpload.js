@@ -31,7 +31,7 @@ const FileUpload = ({ onFileUpload }) => {
     setError("");
     const file = acceptedFile[0];
     if (!file.name.endsWith(".xlsx")) {
-      setError("Invalid file format. please upload .xlsx file only");
+      setError("Invalid file format, please upload .xlsx file only");
       return;
     }
 
